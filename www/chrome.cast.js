@@ -576,6 +576,19 @@ chrome.cast.requestSession = function (successCallback, errorCallback, opt_sessi
     });
 };
 
+chrome.cast.requestSessionById = (sessionId) => {
+    return _session && sessionId === _session.sessionId ? _session : null;
+};
+
+/**
+ * @link https://developers.google.com/cast/docs/reference/web_sender/chrome.cast#.addReceiverActionListener
+ * @type {chrome.cast.addReceiverActionListener}
+ * @param {chrome.cast.ReceiverActionListener}listener
+ */
+chrome.cast.addReceiverActionListener = (listener) => {
+    // This method needs to be present as it might be called, but we don't have to do anything with it at the moment.
+};
+
 /**
  * Describes the state of a currently running Cast application. Normally, these objects should not be created by the client.
  * @param {string}                                 sessionId   Uniquely identifies this instance of the receiver application.
