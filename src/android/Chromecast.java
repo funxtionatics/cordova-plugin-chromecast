@@ -101,9 +101,17 @@ public final class Chromecast extends CordovaPlugin {
                                 continue;
                             }
                             Class arg = args.get(i).getClass();
-                            if (types[i] != arg) {
-                                isValid = false;
-                                break;
+                           if (types[i] != arg) {
+                                // Exception for the loadMedia method at line 310, cast the 'currentTime' to Integer
+                                if (action.equalsIgnoreCase("loadMedia")) {
+                                    if (i == 6) {
+                                        Double currentTime = (Double) args.get(i);
+                                        args.put(i, Integer.valueOf(currentTime.intValue())); 
+                                    }
+                                } else {
+                                    isValid = false;
+                                    break;
+                                }
                             }
                         }
                         if (isValid) {
